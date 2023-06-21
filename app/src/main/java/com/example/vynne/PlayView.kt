@@ -1,5 +1,5 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class,
-    ExperimentalMaterial3Api::class
+    ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class
 )
 
 package com.example.vynne
@@ -13,10 +13,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.rounded.KeyboardArrowRight
+import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,21 +34,24 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.BlurredEdgeTreatment
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun ImageDisplayCard(imageResId: Int, contentDescription: String){
-    var src :Int = imageResId
+fun ImageDisplayCard( contentDescription: String){
+    var src :Int =R.drawable.music002
     var state by remember { mutableStateOf(false)}
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Card(onClick = {state =!state },
+        ElevatedCard(
+            onClick = { state = !state },
             modifier = Modifier
                 .padding(
                     start = 18.dp,
@@ -46,14 +59,17 @@ fun ImageDisplayCard(imageResId: Int, contentDescription: String){
                 )
                 .fillMaxWidth()
                 .height(290.dp),
-            shape = RoundedCornerShape(10.dp),
-        ){
+            shape = RoundedCornerShape(25.dp),
+            elevation = CardDefaults.cardElevation(10.dp)
+        ) {
             Column(
                 modifier = Modifier.run {
                     wrapContentSize()
-                    //blur(radius = 10.dp)
-                }
-                ,horizontalAlignment = Alignment.CenterHorizontally,
+                    blur(
+                        radius = 0.dp,
+                        edgeTreatment = BlurredEdgeTreatment.Rectangle
+                    )
+                }, horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
 
             ) {
@@ -65,57 +81,81 @@ fun ImageDisplayCard(imageResId: Int, contentDescription: String){
                     contentScale = ContentScale.Crop,
                 )
                 src = if (state) {
-                    R.drawable.gettyimage
+                    R.drawable.music001
                 } else {
-                    R.drawable.adobestock
+                    R.drawable.music002
                 }
             }
 
         }
-
-//button
-        Spacer(modifier = Modifier.padding(bottom=18.dp))
+        //===============PROGRESS BAR TO CHECK THE MUSIC PLAYING======================
+        //============================================================================
+        //============================================================================
+        Spacer(modifier = Modifier.padding(bottom = 12.dp))
         Row(
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.Absolute.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Control_Button1()
+
+            LinearProgressIndicator(
+
+            )
+
         }
 
-}
 
 
-// button to display
-/*@Composable
-fun TransparentCircleBlurButton(
-    text: String,
-    modifier: Modifier = Modifier,
-) {
-    var state1 by remember{
-        mutableStateOf(false)
-    }
-    Button(
-        {state1 =! state1}, modifier
-            .fillMaxSize()
-            .graphicsLayer {
-                shape = CircleShape
-                alpha = 0.5f
-            },
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Transparent,
-            contentColor = MaterialTheme.colorScheme.onSurface,
-        )
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
-            contentAlignment = Alignment.Center,
+        //===============BUTTONS TO CONTROL THE MUSIC PLAYING=========================
+        //============================================================================
+        //============================================================================
+        Spacer(modifier = Modifier.padding(bottom = 18.dp))
+        Row(
+            horizontalArrangement = Arrangement.Absolute.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = text)
+            ElevatedButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Rounded.KeyboardArrowLeft,
+                    contentDescription = "Play Before"
+                )
+                Icon(
+                    imageVector = Icons.Rounded.KeyboardArrowLeft,
+                    contentDescription = "Play Before"
+                )
+            }
+
+
+
+            Spacer(modifier = Modifier.padding(horizontal = 4.dp))
+            var state001 by remember{ mutableStateOf(false) }
+            var Xchange =Icons.Rounded.PlayArrow
+            ElevatedButton(
+                onClick = { state001=!state001},
+                modifier = Modifier.size(65.dp),
+            ) {
+                Icon(imageVector = Xchange, contentDescription = "Play")
+                Xchange = if(state001){
+                    Icons.Rounded.PlayArrow
+                }else{
+                    Icons.Rounded.Close
+                }
+            }
+
+
+
+            Spacer(modifier = Modifier.padding(horizontal = 4.dp))
+            ElevatedButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Rounded.KeyboardArrowRight,
+                    contentDescription = "Play After"
+                )
+                Icon(
+                    imageVector = Icons.Rounded.KeyboardArrowRight,
+                    contentDescription = "Play After"
+                )
+            }
         }
     }
 }
-*/
 
-}
+
