@@ -16,11 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.KeyboardArrowLeft
-import androidx.compose.material.icons.rounded.KeyboardArrowRight
-import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.ElevatedCard
@@ -114,30 +109,35 @@ fun ImageDisplayCard( contentDescription: String){
             verticalAlignment = Alignment.CenterVertically
         ) {
             ElevatedButton(onClick = { /*TODO*/ }) {
-                Icon(
+                /*Icon(
                     imageVector = Icons.Rounded.KeyboardArrowLeft,
                     contentDescription = "Play Before"
                 )
                 Icon(
                     imageVector = Icons.Rounded.KeyboardArrowLeft,
                     contentDescription = "Play Before"
-                )
+                )*/
+                Icon(painter = painterResource(id = R.drawable.baseline_skip_previous), contentDescription ="Skip_Previous")
             }
 
 
 
             Spacer(modifier = Modifier.padding(horizontal = 4.dp))
             var state001 by remember{ mutableStateOf(false) }
-            var Xchange =Icons.Rounded.PlayArrow
+            var Xchange =R.drawable.baseline_play_arrowooo2
             ElevatedButton(
                 onClick = { state001=!state001},
                 modifier = Modifier.size(65.dp),
             ) {
-                Icon(imageVector = Xchange, contentDescription = "Play")
+                Icon(
+                    painterResource(id = Xchange ),
+                    modifier = Modifier.size(65.dp),
+                    //imageVector = Xchange,
+                    contentDescription = "Play")
                 Xchange = if(state001){
-                    Icons.Rounded.PlayArrow
+                    R.drawable.baseline_stop_24
                 }else{
-                    Icons.Rounded.Close
+                    R.drawable.baseline_play_arrowooo2
                 }
             }
 
@@ -145,14 +145,15 @@ fun ImageDisplayCard( contentDescription: String){
 
             Spacer(modifier = Modifier.padding(horizontal = 4.dp))
             ElevatedButton(onClick = { /*TODO*/ }) {
-                Icon(
+                /*Icon(
                     imageVector = Icons.Rounded.KeyboardArrowRight,
                     contentDescription = "Play After"
                 )
                 Icon(
                     imageVector = Icons.Rounded.KeyboardArrowRight,
                     contentDescription = "Play After"
-                )
+                )*/
+                Icon(painter = painterResource(id = R.drawable.baseline_skip_next01), contentDescription ="Skip_Next" )
             }
         }
     }

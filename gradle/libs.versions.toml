@@ -1,18 +1,20 @@
 [versions]
 agp = "8.2.0-alpha09"
 kotlin = "1.8.10"
-core-ktx = "1.9.0"
+core-ktx = "1.10.1"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 lifecycle-runtime-ktx = "2.6.1"
 activity-compose = "1.7.2"
-compose-bom = "2023.03.00"
+compose-bom = "2023.06.00"
 exoplayer = "2.18.7"
 exoplayer-ui = "2.18.7"
 exoplayer-core = "2.18.7"
 media3-exoplayer = "1.0.2"
 media3-ui = "1.0.2"
+hilt-android = "2.46.1"
+hilt-android-compiler = "2.46.1"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -34,6 +36,8 @@ exoplayer-ui = { group = "com.google.android.exoplayer", name = "exoplayer-ui", 
 exoplayer-core = { group = "com.google.android.exoplayer", name = "exoplayer-core", version.ref = "exoplayer-core" }
 androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3-exoplayer" }
 androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3-ui" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-android" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-android-compiler" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
